@@ -78,8 +78,12 @@ execs: $(BUILD_DIR)/$(DAEMON_EXEC)
 $(BUILD_DIRS):
 	mkdir -p "$@"
 
-$(BUILD_DIR)/$(DAEMON_EXEC): $(EXEC_SRC) | $(BUILD_DIR)
-	$(HC) $(HFLAGS) -o "$@" $<
+LIB_SRCS ?= \
+	$(SRC_DIR)/Tollshray/Daemon/CLI.hs \
+	#
+
+$(BUILD_DIR)/$(DAEMON_EXEC): $(EXEC_SRC) $(LIB_SRCS) | $(BUILD_DIR)
+	$(HC) $(HFLAGS) -o "$@" $?
 
 .PHONY: dist
 dist: execs | $(DIST_DIR)

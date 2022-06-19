@@ -3,15 +3,12 @@
 -- https://dmitryfrank.com/articles/indent_with_tabs_align_with_spaces
 {-# OPTIONS_GHC -fno-warn-tabs #-}
 
-{-
-module Tollshray
+module Tollshray.Daemon.CLI
 	(
 		main
 	) where
--}
-module Main where
 
-import Tollshray.Daemon.CLI as T
-
+-- | Placeholder.
 main :: IO ()
-main = T.main
+main = do
+	putStr "Placeholder 2.\n"
