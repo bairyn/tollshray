@@ -1,6 +1,14 @@
 .PHONY: default
 default: all
 
+DEPENDENCIES ?= \
+	bytestring \
+	#
+
+.PHONY: show-dependencies
+show-dependencies:
+	@echo $(DEPENDENCIES)
+
 HC ?= ghc
 HFLAGS ?= $(BASE_HFLAGS) $(EXTRA_HFLAGS)
 BASE_HFLAGS ?= $(CONFIG_HFLAGS) $(HFLAGS_QA) $(HFLAGS_OPTIMIZATION) $(HFLAGS_DEBUG)

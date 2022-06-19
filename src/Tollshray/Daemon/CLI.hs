@@ -8,7 +8,10 @@ module Tollshray.Daemon.CLI
 		main
 	) where
 
+import qualified Data.ByteString as B
+
 -- | Placeholder.
 main :: IO ()
 main = do
+	const (return ()) $ B.empty
 	putStr "Placeholder 2.\n"
