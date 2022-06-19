@@ -4,6 +4,7 @@ default: all
 # See also ‘HFLAGS_STATIC’ note.
 DEPENDENCIES ?= \
 	bytestring \
+	template-haskell \
 	#
 
 .PHONY: show-dependencies

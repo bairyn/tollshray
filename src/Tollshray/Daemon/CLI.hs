@@ -8,10 +8,15 @@ module Tollshray.Daemon.CLI
 		main
 	) where
 
+-- bytestring
 import qualified Data.ByteString as B
+
+-- template-haskell
+import qualified Language.Haskell.TH as TH
 
 -- | Placeholder.
 main :: IO ()
 main = do
 	const (return ()) $ B.empty
+	const (return ()) $ TH.location
 	putStr "Placeholder 2.\n"
