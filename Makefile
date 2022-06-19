@@ -1,6 +1,7 @@
 .PHONY: default
 default: all
 
+# See also ‘HFLAGS_STATIC’ note.
 DEPENDENCIES ?= \
 	bytestring \
 	#
@@ -21,6 +22,21 @@ HFLAGS_DEBUG ?=
 CONFIG_HFLAGS ?= \
 	-static -dumpdir $(DUMPDIR) -hidir $(HIDIR) -hiedir $(HIEDIR) \
 	-odir $(ODIR) -outputdir $(OUTDIR) -stubdir $(STUBDIR) \
+	#
+
+# Optional flags for static linking.
+#
+# Note: for ‘-optl-static’, also ensure you have static libraries for gmp, ffi,
+# and numa, e.g. ‘yay -S --needed libgmp-static libffi-static numactl-git’ on archlinux.
+# (Thanks: https://ro-che.info/articles/2015-10-26-static-linking-ghc)
+# https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/phases.html#ghc-flag--fwhole-archive-hs-libs
+HFLAGS_STATIC ?= \
+	-optl-static \
+	-optl-pthread \
+	-fwhole-archive-hs-libs \
+	#
+HFLAGS_STATIC_UNUSED ?= \
+	-pgml ld.bfd \
 	#
 
 DUMPDIR ?= $(C_DIR)/dump
@@ -91,7 +107,7 @@ LIB_SRCS ?= \
 	#
 
 $(BUILD_DIR)/$(DAEMON_EXEC): $(EXEC_SRC) $(LIB_SRCS) | $(BUILD_DIR)
-	$(HC) $(HFLAGS) -o "$@" $^
+	$(HC) $(HFLAGS) $(HFLAGS_STATIC) -o "$@" $^
 
 .PHONY: dist
 dist: execs | $(DIST_DIR)
