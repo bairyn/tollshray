@@ -1,0 +1,8 @@
+# Our project.
+/build
+/tmp
+/misc
+
+/_build*
+
+/.build*
