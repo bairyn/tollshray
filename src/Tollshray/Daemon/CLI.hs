@@ -14,9 +14,13 @@ import qualified Data.ByteString as B
 -- template-haskell
 import qualified Language.Haskell.TH as TH
 
+-- language-rust
+--import qualified Language.Rust.Syntax as R
+
 -- | Placeholder.
 main :: IO ()
 main = do
 	const (return ()) $ B.empty
 	const (return ()) $ TH.location
+	const (return ()) $ R.Variant
 	putStr "Placeholder 2.\n"

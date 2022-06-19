@@ -2,9 +2,14 @@
 default: all
 
 # See also ‘HFLAGS_STATIC’ note.
+# e.g. ‘cabal update && cabal install …’
+# FIXME: language-rust doesn't build for me.
 DEPENDENCIES ?= \
 	bytestring \
 	template-haskell \
+	#
+DEPENDENCIES_UNUSED ?= \
+	language-rust \
 	#
 
 .PHONY: show-dependencies
