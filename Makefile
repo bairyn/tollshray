@@ -91,7 +91,7 @@ LIB_SRCS ?= \
 	#
 
 $(BUILD_DIR)/$(DAEMON_EXEC): $(EXEC_SRC) $(LIB_SRCS) | $(BUILD_DIR)
-	$(HC) $(HFLAGS) -o "$@" $?
+	$(HC) $(HFLAGS) -o "$@" $^
 
 .PHONY: dist
 dist: execs | $(DIST_DIR)
