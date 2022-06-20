@@ -8,8 +8,34 @@
 # ‘GHC can't find module’ errors, consider using stack or building your own ghc
 # until somebody fixes this issue.)
 
+# | default: build and dist.
+#
+# Afterwards you can execute ‘./build/tollshray’ or install ‘./build/dist/’
+# into a prefix.
 .PHONY: default
 default: all
+
+# v2-install: cabal-install v2 user-level install.
+#
+# Put this application package in the user-level store, and then set up the
+# symlinks to install it at the user-level, in e.g. ‘~/.cabal/bin’.
+.PHONY: v2-install
+v2-install:
+	cabal v2-install
+
+.PHONY: v2-install-lib
+v2-install-lib:
+	cabal v2-install --lib
+
+# stack-install: likewise, except with stack.
+.PHONY: stack-install
+stack-install:
+	stack install
+
+# nix: likewise, except with nix
+.PHONY: nix
+nix:
+	_nix install
 
 # See also ‘HFLAGS_STATIC’ note.
 #
