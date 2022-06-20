@@ -4,6 +4,12 @@ cabal-version:      2.4
 -- It's a better style: https://dmitryfrank.com/articles/indent_with_tabs_align_with_spaces
 
 name:               tollshray
+-- Note: be sure the version is consistent in the 3 places it appears:
+-- 	- `tollshray.cabal`
+-- 	- `CHANGELOG.md`
+-- 	- `src/Tollshray/Meta/Tollshray.hs`
+-- (TODO: add a check in a suitable location for consistency in these 3 places,
+-- e.g. somewhere in the Makefile.)
 version:            0.1.1.0-dev
 
 -- A short (one-line) description of the package.
