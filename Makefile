@@ -1,58 +1,36 @@
 # The GNU Makefile for building the application executable.
 #
-# This is just one option available alongside Cabal (TODO).  If the
-# dependencies are available in the environment, makefile should also be
-# capable of using ‘ghc’ to build the application.  (TODO) Other build options
-# are also available: stack, nix.
+# This is just one option available alongside cabal-install, stack, and Nix
+# (TODO).
 #
-# Note: beware mixing global system Haskell packages with user cabal-install
-# packages.  On my Archlinux system, it's completely broken; probably I can
-# only do one or the other.  For now, I'm just trying isolated environments
-# with nix and stack.
+# By default use ‘stack ghc’.  (Note: if mixing global system Haskell packages
+# (e.g. ‘hackage-*’ on Archlinux) with user-level ‘cabal-install’ v1 causes
+# ‘GHC can't find module’ errors, consider using stack or building your own ghc
+# until somebody fixes this issue.)
 
 .PHONY: default
 default: all
 
 # See also ‘HFLAGS_STATIC’ note.
 #
-# Show the libraries providing the modules that GHC needs in order to build
-# this application.
-#
-# e.g. ‘cabal update && cabal install …’, but unfortunately currently Archlinux
-# system packages seem broken with cabal-install user packages.  Perhaps I need
-# to volunteer my time to fix it.  If I can find the time, while I'm at it, and
-# I may as well work on getting ‘ghc’ more easily bootstrappable, since on
-# Archlinux the system packages for ‘ghc’ were broken; this is a second project
-# I could volunteer for.
-#
-# Otherwise mixing the two is bugged and results in BUILD ERRORs like ‘GHC
-# can't find the files’, e.g.:
-#
-# Note on cabal-install BUILD ERRORs if GHC can't find the files, e.g.
-# 	
-# 	[2 of 7] Compiling Network.Socks5.Types ( Network/Socks5/Types.hs, dist/build/Network/Socks5/Types.o, dist/build/Network/Socks5/Types.dyn_o )
-# 	
-# 	Network/Socks5/Types.hs:24:1: error:
-# 	    Could not find module ‘Network.Socket’
-# 	    There are files missing in the ‘network-3.1.2.7’ package,
-# 	    try running 'ghc-pkg check'.
-# 	    Use -v (or `:set -v` in ghci) to see a list of the files searched for.
-# 	   |
-# 	24 | import Network.Socket (HostAddress, HostAddress6, PortNumber)
-# 	   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-# 	cabal: Failed to build socks-0.6.1 (which is required by http-conduit-2.3.8).
-# 	See the build log above for details.
-DEPENDENCIES ?= \
+# If bypassing Cabal, cabal-install, and stack, and just using ‘ghc’ directly
+# where the required modules are available and visible to ‘ghc’, packages by
+# these names can provide the required modules.
+RDEPENDENCIES ?= \
 	bytestring \
 	template-haskell \
 	language-rust \
+	primes \
 	#
 
 .PHONY: show-dependencies
 show-dependencies:
-	@echo $(DEPENDENCIES)
+	@echo $(RDEPENDENCIES)
 
-HC ?= ghc
+HC ?= $(HC_STACK)
+HC_STACK ?= stack ghc --
+HC_CABAL_INSTALL_V2 ?= cabal v2-exec -- ghc
+HC_GLOBAL_AND_CABAL_INSTALL_USER ?= ghc  # If user-level cabal-install combined with system ‘haskell-*’ packages is broken (GHC can't find module errors), consider using stack until someone fixes it.
 HFLAGS ?= $(BASE_HFLAGS) $(EXTRA_HFLAGS)
 BASE_HFLAGS ?= $(CONFIG_HFLAGS) $(HFLAGS_QA) $(HFLAGS_OPTIMIZATION) $(HFLAGS_DEBUG)
 EXTRA_HFLAGS ?=
