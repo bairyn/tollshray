@@ -4,13 +4,29 @@
 # dependencies are available in the environment, makefile should also be
 # capable of using ‘ghc’ to build the application.  (TODO) Other build options
 # are also available: stack, nix.
+#
+# Note: beware mixing global system Haskell packages with user cabal-install
+# packages.  On my Archlinux system, it's completely broken; probably I can
+# only do one or the other.  For now, I'm just trying isolated environments
+# with nix and stack.
 
 .PHONY: default
 default: all
 
 # See also ‘HFLAGS_STATIC’ note.
 #
-# e.g. ‘cabal update && cabal install …’
+# Show the libraries providing the modules that GHC needs in order to build
+# this application.
+#
+# e.g. ‘cabal update && cabal install …’, but unfortunately currently Archlinux
+# system packages seem broken with cabal-install user packages.  Perhaps I need
+# to volunteer my time to fix it.  If I can find the time, while I'm at it, and
+# I may as well work on getting ‘ghc’ more easily bootstrappable, since on
+# Archlinux the system packages for ‘ghc’ were broken; this is a second project
+# I could volunteer for.
+#
+# Otherwise mixing the two is bugged and results in BUILD ERRORs like ‘GHC
+# can't find the files’, e.g.:
 #
 # Note on cabal-install BUILD ERRORs if GHC can't find the files, e.g.
 # 	
@@ -26,47 +42,6 @@ default: all
 # 	   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 # 	cabal: Failed to build socks-0.6.1 (which is required by http-conduit-2.3.8).
 # 	See the build log above for details.
-#
-# # REMOVE pacman system Haskell packages, and install ghc and cabal-install
-# manually:
-#
-# I didn't dig too deeply into this issue, but the root of it seems to be that
-# the Archlinux ‘haskell-*’ packages are broken with user ‘cabal install blah’
-# installations and builds.  So if you want to use ‘cabal-install’, clean up
-# the user ‘~/.ghc’ and ‘~/.cabal’ packages by removing them, and clean up all
-# Archlinux system pacman Haskell packages, ghc and cabal-install, ‘haskell-*’,
-# and also ghc-libs, alex, happy, etc.
-#
-# Then build ‘ghc’ and ‘cabal-install’ by hand (you may temporarily need a
-# system ghc, alex, and happy to bootstrap this; just look at what the build process
-# tells you, and beware installing too much or this could also break the manual
-# builds, and afterwards you can remove the temporary ‘ghc’, ‘happy’,
-# ‘ghc-libs’, etc.  packages), and then you can have a consistent user
-# installation and build your own Haskell packages with ‘cabal-install’ and
-# such.
-#
-# Sorry for the hassle.  Maybe I should volunteer my time to fix ghc Haskell on
-# Archlinux.
-#
-# *Sigh*, couldn't even build GHC.  Okay, I need a working Haskell installation
-# before I can proceed on this project, unless I want to limit what libraries
-# are available or I choose another language.
-#
-# TODO: add more GHC bootstrapping options, or otherwise - second.
-#
-# OLD:
-#
-# If GHC can't find the files (BUILD ERROR), one solution may be to remove the
-# package manager packages and dependencies with e.g. ‘haskell-utf8-string
-# haskell-hledger-lib hledger darcs’ and to then install the user-wise package
-# with e.g. ‘cabal install --lib utf8-string’ and ‘cabal install --lib
-# language-rust’.  I had to repeat this pattern for many other packages also in
-# order to get cabal-install to install language-rust under my user.
-# (Archlinux: I removed all ‘haskell-*’ packages along with ghc and
-# cabal-install, and also alex, happy, and ghc-libs, to get a clean setup.  I
-# (eqv.) removed ~/.ghc and ~/.cabal.  Then I installed ghc and cabal-install,
-# pacman packages.  Then I could finally build ‘language-rust’ with ‘cabal
-# install language-rust’.  Wait, no, actually, I couldn't.)
 DEPENDENCIES ?= \
 	bytestring \
 	template-haskell \
