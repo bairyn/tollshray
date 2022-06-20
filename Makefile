@@ -52,6 +52,8 @@ default: all
 # before I can proceed on this project, unless I want to limit what libraries
 # are available or I choose another language.
 #
+# TODO: add more GHC bootstrapping options, or otherwise - second.
+#
 # OLD:
 #
 # If GHC can't find the files (BUILD ERROR), one solution may be to remove the
