@@ -15,6 +15,9 @@
 .PHONY: default
 default: all
 
+.PHONY: all-more
+all-more: all more
+
 # v2-install: cabal-install v2 user-level install.
 #
 # Put this application package in the user-level store, and then set up the
@@ -46,6 +49,16 @@ v2-build:
 .PHONY: v2-build-lib
 v2-build-lib:
 	cabal v2-build --lib
+
+# Same, but for stack.
+.PHONY: stack-build
+stack-build:
+	stack build
+
+# Same, but for nix.
+.PHONY: nix-build
+nix-build:
+	_nix build
 
 # See also ‘HFLAGS_STATIC’ note.
 #
@@ -179,5 +192,28 @@ clean-cabal:
 	cabal v2-clean
 	#rm -rf -- "./dist-newstyle/"
 
+.PHONY: clean-stack
+clean-stack:
+	stack clean
+	#rm -rf -- "./.stack-work/"
+
+.PHONY: clean-nix
+clean-nix:
+	:
+
+.PHONY: clean-leftover
+clean-leftover:
+	rm -rf -- "./dist-newstyle/"
+	rm -rf -- "./.stack-work/"
+
 .PHONY: cleanall
-cleanall: clean clean-cabal
+cleanall: clean clean-cabal clean-stack clean-nix clean-leftover
+
+.PHONY: more
+more: package-builds
+
+.PHONY: package-builds
+package-builds: v2-build stack-build nix-build
+
+.PHONY: package-installs
+package-installs: v2-install stack-install nix-install
