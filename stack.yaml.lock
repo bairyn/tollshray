@@ -3,7 +3,25 @@
 # For more information, please see the documentation at:
 #   https://docs.haskellstack.org/en/stable/lock_files
 
-packages: []
+packages:
+- completed:
+    name: language-rust
+    pantry-tree:
+      sha256: 6d2530e2338f243146042f0a9464dd62ae8027128b652b3119434c0c06fe3346
+      size: 3549
+    commit: 9d509c450d009cc99f1180b3f2f30247dfb1cfce
+    git: https://github.com/harpocrates/language-rust
+    version: 0.2.0.27
+  original:
+    commit: 9d509c450d009cc99f1180b3f2f30247dfb1cfce
+    git: https://github.com/harpocrates/language-rust
+- completed:
+    pantry-tree:
+      sha256: c0097091b5524b6ddb060829e06d44b321436052b4fcfb137c1ee5052c1d666b
+      size: 3946
+    hackage: bytestring-0.11.3.1@sha256:0cc97b237df9a34d12de37973ad306391e24b0c262387c4d846bb8d1d65699dd,7339
+  original:
+    hackage: bytestring-0.11.3.1
 snapshots:
 - completed:
     sha256: d4d7a4ac80485f3c21d0c6bfe5e7a21c3f71ca4fdfea022f98574047ebb58ebb

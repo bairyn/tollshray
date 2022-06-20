@@ -18,12 +18,12 @@ import qualified Language.Haskell.TH as TH
 --import qualified Language.Rust.Syntax as R
 
 -- primes
-import qualified Data.Numbers.Primes as R
+--import qualified Data.Numbers.Primes as R
 
 -- | Placeholder.
 main :: IO ()
 main = do
 	const (return ()) $ B.empty
 	const (return ()) $ TH.location
-	const (return ()) $ (take 10 R.primes  :: [Integer])
+	--const (return ()) $ (take 10 R.primes  :: [Integer])
 	putStr "Placeholder 3.\n"
