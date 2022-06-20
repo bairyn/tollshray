@@ -1,18 +1,23 @@
 cabal-version:      2.4
+
+-- TODO: disable Cabal rules or warnings about using tabs for indentation.
+-- It's a better style: https://dmitryfrank.com/articles/indent_with_tabs_align_with_spaces
+
 name:               tollshray
 version:            0.1.0.0
 
 -- A short (one-line) description of the package.
--- synopsis:
+synopsis: A TBS AI
 
 -- A longer description of the package.
--- description:
+description: A TBS AI.
 
 -- A URL where users can report bugs.
--- bug-reports:
+bug-reports: https://github.com/bairyn/tollshray
 
 -- The license under which the package is released.
--- license:
+license-non-spdx:   Permissive OSS style.
+license:            0BSD
 author:             Byron Johnson
 maintainer:         byron@byronjohnson.net
 
@@ -20,24 +25,25 @@ maintainer:         byron@byronjohnson.net
 -- copyright:
 -- category:
 extra-source-files:
-    CHANGELOG.md
-    README.md
-    Makefile
-    Setup.hs
+	CHANGELOG.md
+	README.md
+	Makefile
+	Setup.hs
 
 executable tollshray
-    main-is:          Tollshray.hs
+	main-is:          Tollshray.hs
 
-    -- Modules included in this executable, other than Main.
-    -- other-modules:
+	-- Modules included in this executable, other than Main.
+	other-modules:
+		Tollshray.Daemon.CLI
 
-    -- LANGUAGE extensions used by modules in this package.
-    -- other-extensions:
-    build-depends:
-        base ^>=4.15.1.0
-        bytestring  -- TODO version
-        template-haskell  -- TODO version
-        --language-rust  -- TODO version
-        primes  -- TODO version
-    hs-source-dirs:   src
-    default-language: Haskell2010
+	-- LANGUAGE extensions used by modules in this package.
+	-- other-extensions:
+	build-depends:
+		base ^>=4.15.1.0,
+		-- TODO version
+		bytestring,
+		template-haskell,
+		primes,
+	hs-source-dirs:   src
+	default-language: Haskell2010

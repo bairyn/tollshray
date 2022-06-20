@@ -37,6 +37,16 @@ stack-install:
 nix:
 	_nix install
 
+# cabal: just locally build the package.
+# (Look in ‘dist-newstyle/’.)
+.PHONY: v2-build
+v2-build:
+	cabal v2-build
+
+.PHONY: v2-build-lib
+v2-build-lib:
+	cabal v2-build --lib
+
 # See also ‘HFLAGS_STATIC’ note.
 #
 # If bypassing Cabal, cabal-install, and stack, and just using ‘ghc’ directly
@@ -163,3 +173,11 @@ dist: execs | $(DIST_DIR)
 .PHONY: clean
 clean:
 	rm -rf -- "./build"
+
+.PHONY: clean-cabal
+clean-cabal:
+	cabal v2-clean
+	#rm -rf -- "./dist-newstyle/"
+
+.PHONY: cleanall
+cleanall: clean clean-cabal
