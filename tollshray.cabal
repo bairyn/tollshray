@@ -23,6 +23,7 @@ extra-source-files:
     CHANGELOG.md
     README.md
     Makefile
+    Setup.hs
 
 executable tollshray
     main-is:          Tollshray.hs
