@@ -53,6 +53,8 @@ extra-deps:
 - git: https://github.com/bairyn/language-lua
   commit: 4f42b7602be76c016bea3e038033851a750bb71e
 - alex-tools-0.6
+#- array-0.5.4.0
+- hashable-1.4.0.2
 #
 # extra-deps: []
 

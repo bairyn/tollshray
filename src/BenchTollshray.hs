@@ -4,14 +4,14 @@
 {-# OPTIONS_GHC -fno-warn-tabs #-}
 
 {-
-module TestTollshray
+module BenchTollshray
 	(
 		main
 	) where
 -}
 module Main where
 
-import Tollshray.Tests.All as T
+import Tollshray.Bench.All as B
 
 main :: IO ()
-main = T.main
+main = B.main
