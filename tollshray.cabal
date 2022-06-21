@@ -83,6 +83,8 @@ executable tollshray
 		prettyprinter >= 1.7.1 && < 1.8,
 	hs-source-dirs:   src
 	default-language: Haskell2010
+	other-extensions:
+		TemplateHaskell
 
 library
 	exposed-modules:
@@ -121,3 +123,9 @@ library
 		prettyprinter >= 1.7.1 && < 1.8,
 	hs-source-dirs:   src
 	default-language: Haskell2010
+	-- TODO (external): ‘TemplateHaskell’ with a comma made ‘stack’ emit a weird
+	-- error message:
+	-- 	% stack build
+	-- 	stack: src/Pantry/Types.hs:(1136,3)-(1151,37): Non-exhaustive patterns in case
+	other-extensions:
+		TemplateHaskell

@@ -6,7 +6,7 @@
 # By default use ‘stack ghc’.  (Note: if mixing global system Haskell packages
 # (e.g. ‘hackage-*’ on Archlinux) with user-level ‘cabal-install’ v1 causes
 # ‘GHC can't find module’ errors, consider using stack or building your own ghc
-# until somebody fixes this issue.  (TODO: make ghc more bootstrappable.  TODO:
+# until somebody fixes this issue.  (TODO (external): make ghc more bootstrappable.  TODO (external):
 # consider seeing if the cabal-install mess I keep running into is feasibly
 # cleanly solveable, whether it's Archlinux / pacman's fault, ghc's fault, or
 # cabal-install's fault; or maybe it's just convenient to recommend another
