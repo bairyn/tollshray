@@ -64,6 +64,24 @@ packages:
     hackage: unix-2.7.2.2@sha256:15f5365c5995634e45de1772b9504761504a310184e676bc2ef60a14536dbef9,3496
   original:
     hackage: unix-2.7.2.2
+- completed:
+    name: language-lua
+    pantry-tree:
+      sha256: 5934ab4ac8193d939a993728c568af80d94a28fe3929a6b214c2974d639b056c
+      size: 4105
+    commit: 4f42b7602be76c016bea3e038033851a750bb71e
+    git: https://github.com/bairyn/language-lua
+    version: 0.11.0.1
+  original:
+    commit: 4f42b7602be76c016bea3e038033851a750bb71e
+    git: https://github.com/bairyn/language-lua
+- completed:
+    pantry-tree:
+      sha256: 416893cfe8fe25659a5f38aa42af336ec956536161f99d1909060897cab0b17d
+      size: 323
+    hackage: alex-tools-0.6@sha256:7285049c78342ab2ab578e41198a3591daf204f2dd3b5fac8d1c6d7303b3a08f,1021
+  original:
+    hackage: alex-tools-0.6
 snapshots:
 - completed:
     sha256: d4d7a4ac80485f3c21d0c6bfe5e7a21c3f71ca4fdfea022f98574047ebb58ebb

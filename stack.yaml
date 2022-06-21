@@ -49,6 +49,10 @@ extra-deps:
 - text-2.0
 - binary-0.8.9.0
 - unix-2.7.2.2
+#- language-lua-0.11.0.1
+- git: https://github.com/bairyn/language-lua
+  commit: 4f42b7602be76c016bea3e038033851a750bb71e
+- alex-tools-0.6
 #
 # extra-deps: []
 

@@ -20,10 +20,14 @@ import qualified Language.Haskell.TH as TH
 -- primes
 --import qualified Data.Numbers.Primes as R
 
+-- language-lua
+import qualified Language.Lua.Syntax as L
+
 -- | Placeholder.
 main :: IO ()
 main = do
 	const (return ()) $ B.empty
 	const (return ()) $ TH.location
 	--const (return ()) $ (take 10 R.primes  :: [Integer])
+	const (return ()) $ (L.Unop L.Neg)
 	putStr "Placeholder 3.\n"
