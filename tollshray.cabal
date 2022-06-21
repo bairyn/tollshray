@@ -3,6 +3,10 @@ cabal-version:      2.4
 -- TODO: disable Cabal rules or warnings about using tabs for indentation.
 -- It's a better style: https://dmitryfrank.com/articles/indent_with_tabs_align_with_spaces
 
+-- If using user-level cabal-install installations along with Makefile,
+-- consider using cabal-install to install what you can, and then ‘stack’ for
+-- the rest.
+
 name:               tollshray
 -- Note: be sure the version is consistent in the 3 places it appears:
 -- 	- `tollshray.cabal`
