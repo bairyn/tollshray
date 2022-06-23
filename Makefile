@@ -176,7 +176,10 @@ $(BUILD_DIRS):
 	mkdir -p "$@"
 
 LIB_SRCS ?= \
+	$(SRC_DIR)/Tollshray/Control/Evaluator.hs \
 	$(SRC_DIR)/Tollshray/Daemon/CLI.hs \
+	$(SRC_DIR)/Tollshray/Tests/All.hs \
+	$(SRC_DIR)/Tollshray/Bench/All.hs \
 	#
 
 $(BUILD_DIR)/$(DAEMON_EXEC): $(EXEC_SRC) $(LIB_SRCS) | $(BUILD_DIR)

@@ -47,11 +47,11 @@ executable tollshray
 
 	-- Modules included in this executable, other than Main.
 	other-modules:
+		Tollshray.Control.Evaluator
 		Tollshray.Daemon.CLI
 		Tollshray.Tests.All
+		Tollshray.Bench.All
 
-	-- LANGUAGE extensions used by modules in this package.
-	-- other-extensions:
 	build-depends:
 		base ^>=4.15.1.0,
 		tollshray,
@@ -96,13 +96,16 @@ executable tollshray
 	default-language: Haskell2010
 	other-extensions:
 		TemplateHaskell
+		GADTs
 
 library
 	ghc-options:      -Wall
 
 	exposed-modules:
+		Tollshray.Control.Evaluator
 		Tollshray.Daemon.CLI
 		Tollshray.Tests.All
+		Tollshray.Bench.All
 
 	-- LANGUAGE extensions used by modules in this package.
 	-- other-extensions:
@@ -149,11 +152,15 @@ library
 	-- 	stack: src/Pantry/Types.hs:(1136,3)-(1151,37): Non-exhaustive patterns in case
 	other-extensions:
 		TemplateHaskell
+		GADTs
 
 Test-Suite tollshray-test
 	type:              exitcode-stdio-1.0
 	ghc-options:      -Wall
 	default-language:  Haskell2010
+	other-extensions:
+		TemplateHaskell
+		GADTs
 	hs-source-dirs:    src
 	-- TODO (external): ‘TemplateHaskell’ with a comma made ‘stack’ emit a weird
 	-- error message:
@@ -163,8 +170,10 @@ Test-Suite tollshray-test
 		TemplateHaskell
 	main-is:           TestTollshray.hs
 	other-modules:
+		Tollshray.Control.Evaluator
 		Tollshray.Daemon.CLI
 		Tollshray.Tests.All
+		Tollshray.Bench.All
 	build-depends:
 		base ^>=4.15.1.0,
 		tollshray,
@@ -215,15 +224,17 @@ Benchmark tollshray-bench
 	type:              exitcode-stdio-1.0
 	ghc-options:      -Wall
 	default-language:  Haskell2010
+	other-extensions:
+		TemplateHaskell
+		GADTs
 	hs-source-dirs:    src
 	-- TODO (external): ‘TemplateHaskell’ with a comma made ‘stack’ emit a weird
 	-- error message:
 	-- 	% stack build
 	-- 	stack: src/Pantry/Types.hs:(1136,3)-(1151,37): Non-exhaustive patterns in case
-	other-extensions:
-		TemplateHaskell
 	main-is:           BenchTollshray.hs
 	other-modules:
+		Tollshray.Control.Evaluator
 		Tollshray.Daemon.CLI
 		Tollshray.Tests.All
 		Tollshray.Bench.All

@@ -3,9 +3,11 @@
 -- https://dmitryfrank.com/articles/indent_with_tabs_align_with_spaces
 {-# OPTIONS_GHC -fno-warn-tabs #-}
 
+{-# LANGUAGE GADTs #-}
+
 module Tollshray.Control.Evaluator
 	(
-		--version
+		--Runnable(..)
 	) where
 
 import Prelude
@@ -40,5 +42,20 @@ import Prelude
 -- implementation.
 -- TODO
 
+-- | A fundamental computational model.
+--
+-- Encoding is left up to the context.
+data Routable a b where
+	-- | Write relAddr1 relAddr2 value
+	Write :: Integer -> Integer -> Integer -> Routable a b
+
 -- | Linear type model: mutate, dup, drop.
--- TODO
+--
+-- Fundamental model of computation.
+--
+-- The types help inform the Haskell type system what the inputs and outputs
+-- are, but strictly speaking aren't necessary needed to encode the structure.
+data Runnable a b where
+	Drop :: a -> Runnable a c
+	Dup :: a -> Runnable a (a, a)
+	Mutate :: (a -> b) -> Runnable a b
